@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form id="form-container" action="{% url 'add quiz' %}" method="post">
+        {% csrf_token %}
+
+        {{ quiz_form }}
+
+            {{ questions_formset.management_form }}
+            {% for question_form in questions_formset %}
+                <div class="question">
+                {{ question_form.as_p }}
+                </div>
+            {% endfor %}
+
+            {{ answers_formset.management_form }}
+            {% for answer_form in answers_formset %}
+                <div class="answer">
+                    {{ answer_form.as_p }}
+                </div>
+
+            {% endfor %}
+
+        <button id="add-form" type="button">Add Question</button>
+
+        <button type="submit" class="btn btn-danger">Create</button>
+    </form>
+{% endblock %}
