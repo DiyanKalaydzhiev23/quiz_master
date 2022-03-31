@@ -18,6 +18,7 @@ class Quiz(models.Model):
     TYPE_CHOICES_HISTORY = 'history'
     TYPE_CHOICES_GEOGRAPHY = 'geography'
     TYPE_CHOICES_PHILOSOPHY = 'philosophy'
+    TYPE_CHOICES_OTHER = 'other'
 
     TYPE_CHOICES = (
         (TYPE_CHOICE_BIOLOGY, 'Biology'),
@@ -32,11 +33,13 @@ class Quiz(models.Model):
         (TYPE_CHOICES_HISTORY, 'History'),
         (TYPE_CHOICES_GEOGRAPHY, 'Geography'),
         (TYPE_CHOICES_PHILOSOPHY, 'Philosophy'),
+        (TYPE_CHOICES_OTHER, 'Other'),
     )
 
     category = models.CharField(
         max_length=30,
-        choices=TYPE_CHOICES
+        choices=TYPE_CHOICES,
+        default=TYPE_CHOICES_OTHER,
     )
 
     name = models.CharField(
@@ -67,6 +70,11 @@ class Question(models.Model):
 
 
 class Answer(models.Model):
+    quiz = models.ForeignKey(
+        Quiz,
+        on_delete=models.CASCADE,
+    )
+
     question = models.ForeignKey(
         Question,
         on_delete=models.CASCADE,

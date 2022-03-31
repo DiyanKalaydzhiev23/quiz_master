@@ -2,7 +2,7 @@
 
 {% block content %}
     <section class="py-l10">
-        <div class="flex flex-column md-flex-row md-w-60pc mx-auto">
+        <div class="quiz flex flex-column md-flex-row md-w-80pc mx-auto">
             {% for quiz in quizzes %}
             <div class="w-100pc md-w-50pc">
                 <div class="br-8 p-5 m-5 bg-indigo-lightest-10 pointer hover-scale-up-1 ease-300">
@@ -13,6 +13,10 @@
                         {{ quiz.name }}
                     </div>
                     <a href="#" class="mt-10 button bg-black fs-s3 white no-underline">Solve</a>
+                    {% if request.user.id == quiz.author.id %}
+                        <a href="{% url 'edit quiz' quiz.id %}" class="mt-10 button bg-black fs-s3 white no-underline">Edit</a>
+                        <a href="#" class="mt-10 button bg-black fs-s3 white no-underline">Delete</a>
+                    {% endif %}
                 </div>
             </div>
             {% endfor %}
