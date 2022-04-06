@@ -88,7 +88,7 @@ class EditQuizView(views.UpdateView):
 
         for answer in Answer.objects.filter(quiz=self.get_object().id):
             answers_formset.append(AnswerForm(
-                self.get_object(), questions_formset[len(answers_formset)].save(commit=False), instance=answer)
+                self.get_object(), questions_formset[len(answers_formset)-1].save(commit=False), instance=answer)
             )
 
         context = {
@@ -121,9 +121,7 @@ class EditQuizView(views.UpdateView):
             questions_formset = [q for q in Question.objects.filter(quiz=self.get_object().id)]
             answers_formset = [a for a in Answer.objects.filter(quiz=self.get_object().id)]
 
-            answers_list = [self.request.POST.get(f'answer{i}') for i in range(0, len(self.request.POST.dict())-6)]
-
-            for i in range(0, len(self.request.POST.dict())-6):
+            for i in range(0, (len(self.request.POST.dict())-2) // 2):
                 question_form = QuestionForm(
                     quiz,
                     data={f'question': self.request.POST.get(f'question{i}')},
@@ -133,10 +131,10 @@ class EditQuizView(views.UpdateView):
                 if question_form.is_valid():
                     question = question_form.save()
 
-                    if i >= len(questions_formset)-1:
+                    if i >= len(questions_formset):
                         questions_formset.append(question)
 
-            for i in range(0, len(self.request.POST.dict()) - 6):
+            for i in range(0, ((len(self.request.POST.dict())-2) // 2)):
                 answer_form = AnswerForm(
                     quiz,
                     questions_formset[i],
@@ -149,41 +147,10 @@ class EditQuizView(views.UpdateView):
 
             return redirect(reverse_lazy('quizzes'))
 
-        # question_formset = QuestionFormSet(initial=self.request.POST)
-        # answers_formset = AnswerFormSet(initial=self.request.POST)
-        #
-        # if quiz_form.is_valid() and answers_formset.is_valid():
-        #     quiz = quiz_form.save()
-        #
-        #     questions = question_formset.save(commit=False)
-        #     question_ids = []
-        #
-        #     for question in questions:
-        #         question.quiz_id = quiz.id
-        #         question.save()
-        #         question_ids.append(question.id)
-        #
-        #     answers = answers_formset.save(commit=False)
-        #
-        #     for answer in answers:
-        #         answer.quiz_id = quiz.id
-        #         answer.question_id = question_ids.pop(0)
-        #         answer.save()
-        #
-
-        # quiz_form_data = {
-        #     'category': self.request.POST.get('category'),
-        #     'name': self.request.POST.get('name'),
-        # }
-        #
-        # context = {
-        #     'pk': self.get_object().id,
-        #     'quiz_form': QuizForm(
-        #         self.request.user,
-        #         data=quiz_form_data,
-        #     ),
-        #     'questions_formset': QuestionFormSet(self.request.POST),
-        #     'answers_formset': AnswerFormSet(self.request.POST),
-        # }
-
         return self.get(self, *args, **kwargs)
+
+
+class DeleteQuizView(views.DeleteView):
+    model = Quiz
+    template_name = 'pages/delete_quiz.html'
+    success_url = reverse_lazy('quizzes')

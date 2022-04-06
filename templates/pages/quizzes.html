@@ -15,7 +15,7 @@
                     <a href="#" class="mt-10 button bg-black fs-s3 white no-underline">Solve</a>
                     {% if request.user.id == quiz.author.id %}
                         <a href="{% url 'edit quiz' quiz.id %}" class="mt-10 button bg-black fs-s3 white no-underline">Edit</a>
-                        <a href="#" class="mt-10 button bg-black fs-s3 white no-underline">Delete</a>
+                        <a href="{% url 'delete quiz' quiz.id %}" class="mt-10 button bg-black fs-s3 white no-underline">Delete</a>
                     {% endif %}
                 </div>
             </div>

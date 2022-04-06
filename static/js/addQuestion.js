@@ -1,5 +1,5 @@
 function attachEvent() {
-    const questionForm = document.querySelectorAll(".question");
+    const questionForm = document.querySelectorAll("form .question");
     const answerForm = document.querySelectorAll(".answer");
     const container = document.querySelector("#form-container");
     const addButton = document.getElementById("add-form");
