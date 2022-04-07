@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="landingDiv">
+        <h1 class="mt-0">Quiz Master</h1>
+        <p>Make the best quiz and solve the most!</p>
+        <div class="landingButtons">
+            <a href="{% url 'login' %}">Sign in</a>
+            <a href="{% url 'register' %}">Sign up</a>
+        </div>
+    </div>
+{% endblock %}

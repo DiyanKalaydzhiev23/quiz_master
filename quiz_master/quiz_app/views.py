@@ -6,6 +6,10 @@ from quiz_master.quiz_app.forms import QuizForm, QuestionFormSet, AnswerFormSet,
 from quiz_master.quiz_app.models import Quiz, Question, Answer
 
 
+class LandingView(views.TemplateView):
+    template_name = 'landing_page.html'
+
+
 class QuizzesView(views.ListView):
     model = Quiz
     template_name = 'pages/quizzes.html'

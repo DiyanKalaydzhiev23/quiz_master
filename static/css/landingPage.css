@@ -1,0 +1,39 @@
+.landingDiv {
+    margin: 25vh 40vw 20vh 40vw;
+    font-family: "Oxygen", sans-serif;
+    font-weight: 600;
+    color: white;
+}
+
+.landingDiv h1 {
+    font-size: 45px;
+}
+
+.landingDiv p {
+    font-size: 20px;
+}
+
+.landingButtons a {
+    display: inline-block;
+    height: 40px;
+    width: 110px;
+    border-radius: 2px;
+    line-height: 16px;
+    letter-spacing: 0;
+    font-size: 14px;
+    border: none;
+    justify-content: center;
+    cursor: pointer;
+    padding: 12px;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+    background-color: #4234F8;
+    white-space: nowrap;
+    margin: 10px 5px 0 0;
+}
+
+.landingButtons a:hover {
+    background-color: #4b3ef7;
+}

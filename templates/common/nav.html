@@ -8,12 +8,16 @@
                 <i data-feather="menu"></i>
             </a>
         </div>
-        <div id="nav-items" class="hidden flex sm-w-100pc flex-column md-flex md-flex-row md-justify-end items-center">
-            <a href="#" class="fs-s1 mx-3 py-3 indigo no-underline hover-underline">Home</a>
+        <div id="nav-items" class="flex sm-w-100pc flex-column md-flex md-flex-row md-justify-end items-center">
+            <a href="{% url 'home' %}" class="fs-s1 mx-3 py-3 indigo no-underline hover-underline">Home</a>
             <a href="{% url 'quizzes' %}" class="fs-s1 mx-3 py-3 indigo no-underline hover-underline">Quizzes</a>
             <a href="{% url 'add quiz' %}" class="fs-s1 mx-3 py-3 indigo no-underline hover-underline">Add quiz</a>
             <a href="#" class="fs-s1 mx-3 py-3 indigo no-underline hover-underline">Profile</a>
-            <a href="#" class="button bg-white black fw-600 no-underline mx-5">Register</a>
-            <a href="#" class="button bg-white black fw-600 no-underline mx-5">Login</a>
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="button bg-white black fw-600 no-underline mx-5">Sign Out</a>
+            {% else %}
+                <a href="{% url 'register' %}" class="button bg-white black fw-600 no-underline mx-5">Sign Up</a>
+                <a href="{% url 'login' %}" class="button bg-white black fw-600 no-underline mx-5">Sign In</a>
+            {% endif %}
         </div>
     </nav>
