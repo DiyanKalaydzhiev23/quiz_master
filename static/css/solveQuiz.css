@@ -1,0 +1,112 @@
+#currentQuestion {
+    margin: 10vh 10vw 5vh 15%;
+    color: white;
+}
+
+#title {
+    text-align: center;
+    color: white;
+}
+
+#answerField {
+    margin-left: 15%;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    border-width: 0;
+    width: 70%;
+    height: 10vh;
+    resize: none;
+}
+
+#sendAnswerBtn {
+    border-radius: 20px;
+    border-width: 0;
+    width: 100px;
+    height: 40px;
+    margin: 30px 10% 0 78.5%;
+    background-color: #3643c4;
+}
+
+#manualCheckAnswer {
+    background-color: #3643c4;
+    width: 30vw;
+    margin: 0 0 5vh 33vw;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px lightblue;
+}
+
+#answers {
+    padding: 10px;
+}
+
+#yourAnswer {
+    color: red;
+    font-weight: 600;
+}
+
+#realAnswer {
+    color: green;
+    font-weight: 700;
+}
+
+#compareAnswers {
+    padding-top: 10px;
+    text-align: center;
+    color: white;
+}
+
+#optionButtons {
+    margin: 10px 0 5px 11vw;
+    padding-bottom: 10px;
+}
+
+#optionButtons button:hover {
+     box-shadow: white -1px 1px, white -2px 2px, white -3px 3px, white -4px 4px;
+    transform: translate3d(6px, -6px, 0);
+
+    transition-delay: 0s;
+    transition-duration: 0.4s;
+    transition-property: all;
+}
+
+#sameAnswerBtn {
+    background-color: green;
+    color: white;
+    border-radius: 20px;
+    border-width: 0;
+    width: 60px;
+    height: 40px;
+}
+
+#otherAnswerBtn {
+    background-color: red;
+    color: white;
+    border-radius: 20px;
+    border-width: 0;
+    width: 60px;
+    height: 40px;
+}
+
+#correctAnswer {
+    background-color: green;
+    width: 30vw;
+    margin: 0 0 5vh 33vw;
+    border-radius: 20px;
+}
+
+#correctAnswer h3 {
+    text-align: center;
+    color: white;
+}
+
+#incorrectAnswer {
+    background-color: red;
+    width: 30vw;
+    margin: 0 0 5vh 33vw;
+    border-radius: 20px;
+}
+
+#incorrectAnswer h3 {
+    text-align: center;
+    color: white;
+}

@@ -64,6 +64,12 @@ class AnswerForm(forms.ModelForm):
         exclude = ('quiz', 'question')
 
 
+class StatsForm(forms.Form):
+    total_questions = forms.IntegerField()
+    average_time = forms.FloatField()
+    correct_answers = forms.IntegerField()
+
+
 QuestionFormSet = modelformset_factory(
     Question, fields=('question',), extra=1
 )

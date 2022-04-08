@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="text-center">
+        <h1>Hello, {{ profile }}!</h1>
+        <img class="rounded-circle mb-3" src="{{ profile.image }}" alt="Generic placeholder image" width="140" height="140">
+        <h3>Username: {{ profile.username }}</h3>
+        <h3>Birthdate: {{ profile.date_of_birth }}</h3>
+        <h3>Email: {{ profile.email }}</h3>
+        <h3>Gender: {{ profile.gender }}</h3>
+        <p>Created quizzes: {{ total_pets }}</p>
+        <p>Solved quizzes: {{ total_likes_count }}</p>
+        {% if is_owner %}
+        <a href="#" class="btn btn-success">Edit</a>
+        <a href="#" class="btn btn-danger">Delete</a>
+        {% endif %}
+    </div>
+    <hr>
+    {% if quizzes %}
+    <h2 class='text-center'>These are your quizzes</h2>
+    <div class="row">
+        <div class="row">
+        {% for quiz in quizzes %}
+        <div class="col-lg-4">
+            <div class="card" style="width: 18rem;">
+                <img src="{{ pet.image.url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ pet.type }} {{ pet.name }}, Age: {{ pet.age }}</h5>
+                    <p class="card-text">{{ pet.description }}</p>
+                    <a href="{% url 'pet details'  pet.id %}" class="btn btn-primary">See details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+  </div>
+  {% else %}
+  <div class="text-center">
+    <h2>You have no quizzes</h2>
+    <a href="{% url 'create pet' %}" class="btn btn-success">Add quiz</a>
+  </div>
+    {% endif %}
+{% endblock %}

@@ -32,18 +32,23 @@ class Profile(models.Model):
         max_length=30,
         validators=(
             MinLengthValidator(2),
-        )
+        ),
+        null=True,
+        blank=True,
     )
 
     last_name = models.CharField(
         max_length=30,
         validators=(
             MinLengthValidator(2),
-        )
+        ),
+        null=True,
+        blank=True,
     )
 
     image = models.ImageField(
         upload_to='images',
+        default='../../../media/images/default_image.png',
     )
 
     date_of_birth = models.DateTimeField(
@@ -55,6 +60,18 @@ class Profile(models.Model):
         QuizMasterUser,
         on_delete=models.CASCADE,
         primary_key=True,
+    )
+
+    average_solving_time = models.FloatField(
+        default=0,
+    )
+
+    accuracy = models.FloatField(
+        default=0,
+    )
+
+    solved_quizzes = models.IntegerField(
+        default=0,
     )
 
     def __str__(self):

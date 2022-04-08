@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 id="title"></h1>
+
+    <div id="contentDiv">
+        <h2 id="currentQuestion"></h2>
+        <textarea id="answerField" placeholder="Your answer"></textarea>
+        <button id="sendAnswerBtn">Check</button>
+    </div>
+
+    <div id="manualCheckAnswer" style="display:none">
+        <div id="answers">
+            <p id="yourAnswer"></p>
+            <p id="realAnswer"></p>
+        </div>
+
+        <p id="compareAnswers">Is your answer close to the real one?</p>
+
+        <div id="optionButtons">
+            <button id="sameAnswerBtn">Yes</button>
+            <button id="otherAnswerBtn">No</button>
+        </div>
+    </div>
+
+
+    <div id="correctAnswer" style="display:none">
+        <h3>Correct answer!</h3>
+    </div>
+
+    <div id="incorrectAnswer" style="display:none">
+        <h3>Incorrect answer!</h3>
+    </div>
+
+
+    <form id="form-container" action="{% url 'solve quiz' pk %}" method="post" style="display: none">
+        {% csrf_token %}
+        {{ stats_form }}
+        {{ quiz_form }}
+
+            {{ questions_formset.management_form }}
+            {% for question_form in questions_formset %}
+                <div class="question">
+                {{ question_form }}
+                </div>
+            {% endfor %}
+
+            {{ answers_formset.management_form }}
+            {% for answer_form in answers_formset %}
+                <div class="answer">
+                    {{ answer_form }}
+                </div>
+
+            {% endfor %}
+
+        <div class="buttons">
+            <button id="add-form" type="button">Add Question</button>
+            <button id="submitBtn" type="submit" class="btn btn-danger">Update</button>
+        </div>
+
+    </form>
+{% endblock %}

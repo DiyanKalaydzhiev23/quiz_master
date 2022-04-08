@@ -2,7 +2,9 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import generic as views
 
+from quiz_master.accounts.models import Profile
 from quiz_master.quiz_app.forms import QuizForm, QuestionFormSet, AnswerFormSet, QuestionForm, AnswerForm
+from quiz_master.quiz_app.mixins import GetQuizWithDataMixin
 from quiz_master.quiz_app.models import Quiz, Question, Answer
 
 
@@ -79,33 +81,9 @@ class AddQuizView(views.CreateView):
         return self.render_to_response(context)
 
 
-class EditQuizView(views.UpdateView):
+class EditQuizView(GetQuizWithDataMixin, views.UpdateView):
     model = Quiz
     template_name = "pages/edit_quiz.html"
-
-    def get(self, *args, **kwargs):
-        questions_formset = []
-        answers_formset = []
-
-        for question in Question.objects.filter(quiz=self.get_object().id):
-            questions_formset.append(QuestionForm(self.get_object(), instance=question))
-
-        for answer in Answer.objects.filter(quiz=self.get_object().id):
-            answers_formset.append(AnswerForm(
-                self.get_object(), questions_formset[len(answers_formset)-1].save(commit=False), instance=answer)
-            )
-
-        context = {
-            'pk': self.get_object().id,
-            'quiz_form': QuizForm(
-                self.request.user,
-                instance=self.get_object()
-            ),
-            'questions_formset': questions_formset,
-            'answers_formset': answers_formset,
-        }
-
-        return self.render_to_response(context)
 
     def post(self, *args, **kwargs):
         quiz_form_data = {
@@ -158,3 +136,28 @@ class DeleteQuizView(views.DeleteView):
     model = Quiz
     template_name = 'pages/delete_quiz.html'
     success_url = reverse_lazy('quizzes')
+
+
+class SolveQuizView(GetQuizWithDataMixin, views.UpdateView):
+    model = Quiz
+    template_name = "pages/solve_quiz.html"
+
+    def post(self, *args, **kwargs):
+        accuracy = int(self.request.POST.get('correct_answers')) / int(self.request.POST.get('total_questions')) * 100
+        profile = Profile.objects.filter(user_id=self.request.user.id)[0]
+
+        if profile.average_solving_time:
+            profile.average_solving_time = (profile.average_solving_time + float(self.request.POST.get('average_time'))) / 2
+        else:
+            profile.average_solving_time = float(self.request.POST.get('average_time'))
+
+        if profile.accuracy:
+            profile.accuracy = (profile.accuracy + accuracy) / 2 * 100
+        else:
+            profile.accuracy = accuracy
+
+        profile.solved_quizzes += 1
+
+        profile.save()
+
+        return redirect(reverse_lazy('quizzes'))
