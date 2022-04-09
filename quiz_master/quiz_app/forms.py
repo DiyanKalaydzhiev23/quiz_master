@@ -70,6 +70,17 @@ class StatsForm(forms.Form):
     correct_answers = forms.IntegerField()
 
 
+class SearchForm(forms.Form):
+    quiz_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'placeholder': 'Search by quiz name'
+            }
+        ),
+        label='',
+    )
+
+
 QuestionFormSet = modelformset_factory(
     Question, fields=('question',), extra=1
 )

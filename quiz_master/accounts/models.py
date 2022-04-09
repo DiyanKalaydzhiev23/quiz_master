@@ -70,9 +70,15 @@ class Profile(models.Model):
         default=0,
     )
 
+    created_quizzes = models.IntegerField(
+        default=0,
+    )
+
     solved_quizzes = models.IntegerField(
         default=0,
     )
 
     def __str__(self):
-        return f'{self.first_name} {self.last_name}'
+        if self.first_name and self.last_name:
+            return f'{self.first_name} {self.last_name}'
+        return 'user'

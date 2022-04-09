@@ -12,8 +12,8 @@
             <a href="{% url 'home' %}" class="fs-s1 mx-3 py-3 indigo no-underline hover-underline">Home</a>
             <a href="{% url 'quizzes' %}" class="fs-s1 mx-3 py-3 indigo no-underline hover-underline">Quizzes</a>
             <a href="{% url 'add quiz' %}" class="fs-s1 mx-3 py-3 indigo no-underline hover-underline">Add quiz</a>
-            <a href="#" class="fs-s1 mx-3 py-3 indigo no-underline hover-underline">Profile</a>
             {% if request.user.is_authenticated %}
+                <a href="{% url 'profile' request.user.id %}" class="fs-s1 mx-3 py-3 indigo no-underline hover-underline">Profile</a>
                 <a href="{% url 'logout' %}" class="button bg-white black fw-600 no-underline mx-5">Sign Out</a>
             {% else %}
                 <a href="{% url 'register' %}" class="button bg-white black fw-600 no-underline mx-5">Sign Up</a>

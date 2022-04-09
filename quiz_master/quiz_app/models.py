@@ -44,6 +44,7 @@ class Quiz(models.Model):
 
     name = models.CharField(
         max_length=150,
+        unique=True,
     )
 
     author = models.ForeignKey(

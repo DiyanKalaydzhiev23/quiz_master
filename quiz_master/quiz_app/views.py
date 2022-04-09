@@ -1,21 +1,46 @@
-from django.shortcuts import redirect
+from django.core.paginator import Paginator
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views import generic as views
-
 from quiz_master.accounts.models import Profile
-from quiz_master.quiz_app.forms import QuizForm, QuestionFormSet, AnswerFormSet, QuestionForm, AnswerForm
+from quiz_master.quiz_app.forms import QuizForm, QuestionFormSet, AnswerFormSet, QuestionForm, AnswerForm, SearchForm
 from quiz_master.quiz_app.mixins import GetQuizWithDataMixin
 from quiz_master.quiz_app.models import Quiz, Question, Answer
 
 
+def get_context_data(request, quiz_name):
+    if quiz_name:
+        quizzes = Quiz.objects.filter(name__icontains=quiz_name).order_by('-id')
+    else:
+        quizzes = Quiz.objects.all().order_by('-id')
+
+    paginator = Paginator(quizzes, 20)
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'page_obj': page_obj,
+        'search_form': SearchForm(),
+    }
+
+    return context
+
+
+def get(request, quiz_name):
+    context = get_context_data(request, quiz_name)
+    return render(request, 'pages/quizzes.html', context)
+
+
+def quizzes_view(request, quiz_name=None):
+    if request.method == 'GET':
+        return get(request, quiz_name)
+    else:
+        return get(request, request.POST.get('quiz_name'))
+
+
 class LandingView(views.TemplateView):
     template_name = 'landing_page.html'
-
-
-class QuizzesView(views.ListView):
-    model = Quiz
-    template_name = 'pages/quizzes.html'
-    context_object_name = 'quizzes'
 
 
 class AddQuizView(views.CreateView):
@@ -61,6 +86,10 @@ class AddQuizView(views.CreateView):
                 answer.quiz_id = quiz.id
                 answer.question_id = question_ids.pop(0)
                 answer.save()
+
+            profile = Profile.objects.get(user_id=self.request.user.id)
+            profile.created_quizzes += 1
+            profile.save()
 
             return redirect(reverse_lazy('quizzes'))
 
@@ -152,7 +181,7 @@ class SolveQuizView(GetQuizWithDataMixin, views.UpdateView):
             profile.average_solving_time = float(self.request.POST.get('average_time'))
 
         if profile.accuracy:
-            profile.accuracy = (profile.accuracy + accuracy) / 2 * 100
+            profile.accuracy = (profile.accuracy + accuracy) / 2
         else:
             profile.accuracy = accuracy
 
