@@ -1,42 +1,18 @@
-from django.core.paginator import Paginator
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import generic as views
 from quiz_master.accounts.models import Profile
-from quiz_master.quiz_app.forms import QuizForm, QuestionFormSet, AnswerFormSet, QuestionForm, AnswerForm, SearchForm
+from quiz_master.common.quizzes_get_view_and_context import get
+from quiz_master.quiz_app.forms import QuizForm, QuestionFormSet, AnswerFormSet, QuestionForm, AnswerForm
 from quiz_master.quiz_app.mixins import GetQuizWithDataMixin
 from quiz_master.quiz_app.models import Quiz, Question, Answer
 
 
-def get_context_data(request, quiz_name):
-    if quiz_name:
-        quizzes = Quiz.objects.filter(name__icontains=quiz_name).order_by('-id')
-    else:
-        quizzes = Quiz.objects.all().order_by('-id')
-
-    paginator = Paginator(quizzes, 20)
-
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-
-    context = {
-        'page_obj': page_obj,
-        'search_form': SearchForm(),
-    }
-
-    return context
-
-
-def get(request, quiz_name):
-    context = get_context_data(request, quiz_name)
-    return render(request, 'pages/quizzes.html', context)
-
-
-def quizzes_view(request, quiz_name=None):
+def quizzes_view(request, pk=None, quiz_name=None):
     if request.method == 'GET':
-        return get(request, quiz_name)
+        return get(request, pk, quiz_name, 'pages/quizzes.html')
     else:
-        return get(request, request.POST.get('quiz_name'))
+        return get(request, pk, request.POST.get('quiz_name'), 'pages/quizzes.html')
 
 
 class LandingView(views.TemplateView):

@@ -4,7 +4,7 @@
     <div id="profileDiv" class="text-center">
         <div id="imgDiv">
             <img class="rounded-circle mb-3" src="{{ profile.image }}" alt="Generic placeholder image">
-            {% if is_owner %}
+            {% if request.user.id == profile.user_id %}
                 <a href="#" class="btn btn-success">Edit</a>
                 <a href="#" class="btn btn-danger">Delete</a>
             {% endif %}
@@ -21,10 +21,17 @@
         </div>
     </div>
     <hr>
-    {% if quizzes %}
+    {% if page_obj %}
     <h2 class='text-center'>These are your quizzes</h2>
+
+        <form id="search_bar" action="{% url 'profile' profile.user_id %}" method="post">
+            {% csrf_token %}
+            {{ search_form }}
+            <button type="submit">Search</button>
+        </form>
+
         <div class="quiz flex flex-column md-flex-row md-w-80pc mx-auto">
-            {% for quiz in quizzes %}
+            {% for quiz in page_obj %}
             <div class="w-100pc md-w-50pc">
                 <div class="br-8 p-5 m-5 bg-indigo-lightest-10 pointer hover-scale-up-1 ease-300">
                     <div class="inline-block bg-indigo indigo-lightest br-3 px-4 py-1 mb-10 fs-s4 uppercase">
@@ -41,6 +48,23 @@
                 </div>
             </div>
             {% endfor %}
+        </div>
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
         </div>
   {% else %}
   <div class="text-center no-quiz">
