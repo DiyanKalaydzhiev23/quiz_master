@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 id="header">Edit Profile</h1>
+    <form id="edit-profile-form" method="post" action="{% url 'edit profile' request.user.id %}" enctype='multipart/form-data'>
+        {% csrf_token %}
+        {{ user_form }}
+        {{ profile_form }}
+        <button type="submit" class="btn btn-danger">Update</button>
+    </form>
+{% endblock %}

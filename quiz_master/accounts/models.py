@@ -48,12 +48,7 @@ class Profile(models.Model):
 
     image = models.ImageField(
         upload_to='images',
-        default='../../../media/images/default_image.png',
-    )
-
-    date_of_birth = models.DateTimeField(
-        null=True,
-        blank=True,
+        default='images/default_image.png',
     )
 
     user = models.OneToOneField(

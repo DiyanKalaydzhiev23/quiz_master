@@ -3,17 +3,17 @@
 {% block content %}
     <div id="profileDiv" class="text-center">
         <div id="imgDiv">
-            <img class="rounded-circle mb-3" src="{{ profile.image }}" alt="Generic placeholder image">
+            <img class="rounded-circle mb-3" src="/media/{{ profile.image }}" alt="Generic placeholder image">
             {% if request.user.id == profile.user_id %}
-                <a href="#" class="btn btn-success">Edit</a>
-                <a href="#" class="btn btn-danger">Delete</a>
+                <a href="{% url 'edit profile' profile.user_id %}" class="btn btn-success">Edit</a>
+                <a href="{% url 'delete profile' profile.user_id %}" class="btn btn-danger">Delete</a>
             {% endif %}
         </div>
         <div>
             <h1>Hello, {{ profile }}!</h1>
             <h3>Username: {{ user.username }}</h3>
-            <h3>Birthdate: {{ profile.date_of_birth }}</h3>
             <h3>Email: {{ user.email }}</h3>
+            <br>
             <p>Created quizzes: {{ profile.created_quizzes }}</p>
             <p>Solved quizzes: {{ profile.solved_quizzes }}</p>
             <p>Accuracy: {{ profile.accuracy|floatformat:-2 }}%</p>

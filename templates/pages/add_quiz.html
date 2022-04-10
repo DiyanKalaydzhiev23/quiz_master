@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <h1 id="header">Add Quiz</h1>
+
     <form id="form-container" action="{% url 'add quiz' %}" method="post">
         {% csrf_token %}
 

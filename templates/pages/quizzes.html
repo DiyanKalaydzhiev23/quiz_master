@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <h1 id="header">Quizzes</h1>
+
     <section class="py-l6">
         <form id="search_bar" action="{% url 'quizzes' %}" method="post">
             {% csrf_token %}
