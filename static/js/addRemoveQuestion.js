@@ -33,4 +33,8 @@ function attachEvent() {
         let totalForms = document.querySelectorAll("#id_form-TOTAL_FORMS");
         totalForms.forEach(f => f.setAttribute('value', `${formNum+1}`));
     }
+
+    function removeQuestion() {
+
+    }
 }

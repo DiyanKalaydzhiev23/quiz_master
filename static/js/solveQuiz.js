@@ -14,16 +14,37 @@ function startQuiz() {
     loadNextQuestion();
 }
 
-function loadNextQuestion() {
 
+function submitQuiz() {
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.click();
+}
+
+
+function loadNextQuestion() {
     const questions = document.querySelectorAll('.question input');
     const currentQuestion = document.getElementById('currentQuestion');
     const answerField = document.getElementById('answerField');
     const checkBtn = document.getElementById('sendAnswerBtn');
 
     if (onQuestion === questions.length) {
-        const submitBtn = document.getElementById('submitBtn');
-        submitBtn.click();
+        const resultBox = document.getElementById('resultBox');
+        const averageTime = document.getElementById('id_average_time');
+        const correctWrongAnswers = document.getElementById('correctWrongAnswers');
+        const correctAnswersCounter = document.getElementById('id_correct_answers');
+        const accuracyField = document.getElementById('accuracyField');
+        const averageTimeField = document.getElementById('averageTimeField');
+        const totalQuestions = document.getElementById('id_total_questions');
+        const sendBtn = document.getElementById('sendBtn');
+
+        resultBox.style.display = 'inline-block';
+
+        correctWrongAnswers.textContent = `Answers: ${correctAnswersCounter.value} out of ${totalQuestions.value}.`;
+        averageTimeField.textContent = `Average time on a quiz: ${Number(averageTime.value).toFixed(2)}s`;
+        accuracyField.textContent = `Accuracy: ${(Number(correctAnswersCounter.value) / Number(totalQuestions.value)).toFixed(2) * 100}%`
+
+        sendBtn.addEventListener('click', submitQuiz);
+
         return;
     }
 

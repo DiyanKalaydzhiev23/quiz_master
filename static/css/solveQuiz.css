@@ -1,3 +1,31 @@
+#resultBox h3 {
+    text-align: center;
+}
+
+#resultBox button {
+    margin-left: 2vw;
+    color: black;
+    background-color: white;
+    font-weight: 650;
+    border-radius: 20px;
+    border-width: 0;
+    width: 60px;
+    height: 40px;
+}
+
+#resultBox button:hover {
+    box-shadow: white -1px 1px, white -2px 2px, white -3px 3px, white -4px 4px;
+    transform: translate3d(6px, -6px, 0);
+
+    transition-delay: 0s;
+    transition-duration: 0.4s;
+    transition-property: all;
+}
+
+#resultBox p {
+    text-align: center;
+}
+
 #currentQuestion {
     margin: 10vh 10vw 5vh 15%;
     color: white;
@@ -27,7 +55,8 @@
     background-color: #3643c4;
 }
 
-#manualCheckAnswer {
+#manualCheckAnswer, #resultBox {
+    color: white;
     background-color: #3643c4;
     width: 30vw;
     margin: 0 0 5vh 33vw;
