@@ -22,6 +22,10 @@ class QuizMasterUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin)
         default=False,
     )
 
+    is_active = models.BooleanField(
+        default=True
+    )
+
     USERNAME_FIELD = 'username'
 
     objects = QuizMasterUserManager()

@@ -25,12 +25,14 @@ def get_context_data(request, **kwargs):
         context['profile'] = Profile.objects.get(user_id=pk)
 
     paginator = Paginator(quizzes, 20)
-
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
     context['page_obj'] = page_obj
     context['search_form'] = SearchForm()
+
+    if 1 == len(request.user.groups.filter(name='moderator')):
+        context['is_moderator'] = True
 
     return context
 
