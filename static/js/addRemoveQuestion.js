@@ -3,9 +3,12 @@ function attachEvent() {
     const answerForm = document.querySelectorAll(".answer");
     const container = document.querySelector("#form-container");
     const addButton = document.getElementById("add-form");
-    let formNum = questionForm.length-1;
+    const removeButton = document.getElementById("remove-form");
 
-    addButton.addEventListener('click', addQuestion);
+    if (removeButton) {
+        addButton.addEventListener('click', addQuestion);
+        removeButton.addEventListener('click', removeQuestion);
+    }
 
     function addQuestion(e) {
         e.preventDefault()
@@ -15,6 +18,7 @@ function attachEvent() {
         let newAnswerForm = answerForm[0].cloneNode(true);
         let buttons = document.getElementsByClassName('buttons')[0];
         let formRegex = RegExp(`form-(\\d){1}-`,'g');
+        let formNum = document.querySelectorAll("form .question").length-1;
 
         formNum++;
         buttons.remove();
@@ -22,8 +26,12 @@ function attachEvent() {
         newAnswerForm.innerHTML = newAnswerForm.innerHTML.replace(formRegex, `form-${formNum}-`);
 
         if (!formsetElement) {
+            console.log(formNum)
             newQuestionForm.children[1].name = `question${formNum}`;
             newAnswerForm.children[1].name = `answer${formNum}`;
+
+            newQuestionForm.children[1].value = '';
+            newAnswerForm.children[1].value = '';
         }
 
         container.insertBefore(newQuestionForm, container.children[-1]);
@@ -35,6 +43,10 @@ function attachEvent() {
     }
 
     function removeQuestion() {
+        const questionForm = document.querySelectorAll("form .question");
+        const answerForm = document.querySelectorAll(".answer");
 
+        questionForm[questionForm.length - 1].remove();
+        answerForm[questionForm.length - 1].remove();
     }
 }

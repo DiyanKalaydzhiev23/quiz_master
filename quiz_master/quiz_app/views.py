@@ -108,10 +108,12 @@ class EditQuizView(GetQuizWithDataMixin, views.UpdateView):
             questions_formset = [q for q in Question.objects.filter(quiz=self.get_object().id)]
             answers_formset = [a for a in Answer.objects.filter(quiz=self.get_object().id)]
 
+            questions_list = [self.request.POST.get(f'question{i}') for i in range(0, (len(self.request.POST.dict())-2) // 2)]
+
             for i in range(0, (len(self.request.POST.dict())-2) // 2):
                 question_form = QuestionForm(
                     quiz,
-                    data={f'question': self.request.POST.get(f'question{i}')},
+                    data={f'question': questions_list[i]},
                     instance=questions_formset[i] if i < len(questions_formset) else None,
                 )
 
@@ -120,6 +122,10 @@ class EditQuizView(GetQuizWithDataMixin, views.UpdateView):
 
                     if i >= len(questions_formset):
                         questions_formset.append(question)
+
+            if len(questions_list) < len(questions_formset):
+                for i in range(len(questions_formset)-1, len(questions_list)-1, -1):
+                    questions_formset[i].delete()
 
             for i in range(0, ((len(self.request.POST.dict())-2) // 2)):
                 answer_form = AnswerForm(
