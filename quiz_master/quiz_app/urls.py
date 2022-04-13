@@ -1,6 +1,8 @@
 from django.urls import path
 from quiz_master.quiz_app.views import AddQuizView, EditQuizView, DeleteQuizView, LandingView, \
     SolveQuizView, quizzes_view
+from quiz_master.accounts import signals
+
 
 urlpatterns = [
     path('', LandingView.as_view(), name='home'),
