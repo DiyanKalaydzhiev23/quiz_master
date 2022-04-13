@@ -10,6 +10,9 @@ UserModel = get_user_model()
 
 @receiver(post_save, sender=UserModel)
 def send_greeting_email(sender, instance, created, **kwargs):
+    if not created:
+        return
+
     subject = "Registration greetings - Quiz Master"
     msg = f'Hello {instance.username},' \
           f'\n' \

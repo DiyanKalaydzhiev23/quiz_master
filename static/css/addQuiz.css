@@ -28,3 +28,10 @@ form button {
 #form-container {
     margin: 10vh 20vw 10vh 20vw;
 }
+
+@media screen and (max-width: 1000px) {
+    .buttons {
+        float: none;
+        margin-top: 30px;
+    }
+}

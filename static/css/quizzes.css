@@ -30,3 +30,17 @@
     margin-top: 5px;
     margin-left: 15vw;
 }
+
+.pagination {
+    margin-bottom: 100px;
+}
+
+@media (max-width: 1000px) {
+    #search_bar input {
+        margin-left: 8vw;
+    }
+
+    #header {
+        margin-top: 40px;
+    }
+}

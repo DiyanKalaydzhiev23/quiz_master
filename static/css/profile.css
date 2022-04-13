@@ -47,3 +47,9 @@
 .btn-danger {
     background-color: red;
 }
+
+@media screen and (max-width: 1000px) {
+    #profileDiv {
+        margin: 10px 0 5px 5px;
+    }
+}
