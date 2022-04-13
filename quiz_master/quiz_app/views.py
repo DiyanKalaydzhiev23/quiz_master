@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import generic as views
@@ -8,6 +10,7 @@ from quiz_master.quiz_app.mixins import GetQuizWithDataMixin
 from quiz_master.quiz_app.models import Quiz, Question, Answer
 
 
+@login_required
 def quizzes_view(request, pk=None, quiz_name=None):
     if request.method == 'GET':
         return get(request, pk, quiz_name, 'pages/quizzes.html')
@@ -19,7 +22,7 @@ class LandingView(views.TemplateView):
     template_name = 'landing_page.html'
 
 
-class AddQuizView(views.CreateView):
+class AddQuizView(LoginRequiredMixin, views.CreateView):
     template_name = "pages/add_quiz.html"
 
     def get(self, *args, **kwargs):
@@ -86,7 +89,7 @@ class AddQuizView(views.CreateView):
         return self.render_to_response(context)
 
 
-class EditQuizView(GetQuizWithDataMixin, views.UpdateView):
+class EditQuizView(LoginRequiredMixin, GetQuizWithDataMixin, views.UpdateView):
     model = Quiz
     template_name = "pages/edit_quiz.html"
 
@@ -97,7 +100,7 @@ class EditQuizView(GetQuizWithDataMixin, views.UpdateView):
         }
 
         quiz_form = QuizForm(
-            self.request.user,
+            self.get_object().author,
             data=quiz_form_data,
             instance=self.get_object()
         )
@@ -143,13 +146,13 @@ class EditQuizView(GetQuizWithDataMixin, views.UpdateView):
         return self.get(self, *args, **kwargs)
 
 
-class DeleteQuizView(views.DeleteView):
+class DeleteQuizView(LoginRequiredMixin, views.DeleteView):
     model = Quiz
     template_name = 'pages/delete_quiz.html'
     success_url = reverse_lazy('quizzes')
 
 
-class SolveQuizView(GetQuizWithDataMixin, views.UpdateView):
+class SolveQuizView(LoginRequiredMixin, GetQuizWithDataMixin, views.UpdateView):
     model = Quiz
     template_name = "pages/solve_quiz.html"
 
