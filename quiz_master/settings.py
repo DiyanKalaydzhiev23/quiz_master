@@ -84,9 +84,9 @@ WSGI_APPLICATION = 'quiz_master.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'quiz_master_database',
-        'USER': 'postgres',
-        'PASSWORD': 'admin',
+        'NAME': 'd2hrhvgqgmh62m',
+        'USER': 'xnjnjwuhfjslcg',
+        'PASSWORD': 'c239e483857a87ddaa6cca3845e64626c3bd61f6f29e0685868ca70b4abecc0f',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
