@@ -1,0 +1,55 @@
+.no-quiz {
+    margin-top: 50px;
+    margin-bottom: 150px;
+    color: white;
+    line-height: 100px;
+}
+
+.no-quiz a {
+    color: white;
+    background-color: #4b3ef7;
+    padding: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+#profileDiv {
+    display: flex;
+    color: white;
+    justify-content: center;
+}
+
+#profileDiv img {
+    width: 180px;
+    height: 180px;
+    border-radius: 80%;
+}
+
+#imgDiv {
+    height: 240px;
+    width: 200px;
+    margin-right: 10px;
+}
+
+#imgDiv a {
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+.btn-success {
+    background-color: green;
+}
+
+.btn-danger {
+    background-color: red;
+}
+
+@media screen and (max-width: 1000px) {
+    #profileDiv {
+        margin: 10px 0 5px 5px;
+    }
+}

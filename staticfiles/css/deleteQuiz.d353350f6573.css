@@ -1,0 +1,16 @@
+#delete-form {
+    margin: 15vh 20vw 10vh 20vw;
+}
+
+#delete-form p {
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+}
+
+#delete-form input {
+    background-color: #3643c4;
+    margin-left: 75%;
+    margin-top: 10px;
+    width: 100px;
+}

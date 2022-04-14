@@ -1,0 +1,17 @@
+.helptext {
+    display: none;
+}
+
+.login-form button, .register-form button {
+    margin-top: 20px;
+    margin-left: -5px;
+}
+
+.login-form h2, .register-form h2 {
+    color: grey;
+}
+
+li {
+    color: white;
+}
+
