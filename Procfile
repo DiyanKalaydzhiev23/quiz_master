@@ -1,0 +1,1 @@
+web: gunicorn quiz_master.wsgi
