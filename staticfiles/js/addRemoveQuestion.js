@@ -39,7 +39,9 @@ function attachEvent() {
         container.insertBefore(buttons, container.children[-1]);
 
         if (questionForm.length > 1) {
-            removeButton.display = 'inline-block';
+            removeButton.style.display = 'inline-block';
+        } else {
+            removeButton.style.display = 'none';
         }
 
         let totalForms = document.querySelectorAll("#id_form-TOTAL_FORMS");
@@ -51,7 +53,7 @@ function attachEvent() {
         const answerForm = document.querySelectorAll(".answer");
 
         if (questionForm.length  === 1) {
-            removeButton.display = 'none';
+            removeButton.style.display = 'none';
         }
 
         if (questionForm.length > 1) {
