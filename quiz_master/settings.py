@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-jeda=+fr+8v8kx!3xq_tl(sz^u35t48lgz-e2=m8_wt@urjlu8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["app-quiz-master.herokuapp.com"]
 
 
 # Application definition
