@@ -8,10 +8,10 @@ function attachEvent() {
     if (removeButton) {
         addButton.addEventListener('click', addQuestion);
         removeButton.addEventListener('click', removeQuestion);
-    }
-    console.log(questionForm.length)
-    if (questionForm.length === 1) {
-        removeButton.style.display = 'none';
+
+        if (questionForm.length === 1) {
+            removeButton.style.display = 'none';
+        }
     }
 
     function addQuestion(e) {
