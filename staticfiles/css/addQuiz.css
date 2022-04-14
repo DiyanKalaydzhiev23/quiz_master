@@ -23,6 +23,7 @@ form button {
     display: flex;
     float: right;
     margin-top: 10px;
+    margin-bottom: 100px;
 }
 
 #form-container {

@@ -9,7 +9,7 @@ function attachEvent() {
         addButton.addEventListener('click', addQuestion);
         removeButton.addEventListener('click', removeQuestion);
     }
-
+    console.log(questionForm.length)
     if (questionForm.length === 1) {
         removeButton.style.display = 'none';
     }
@@ -56,13 +56,13 @@ function attachEvent() {
         const questionForm = document.querySelectorAll("form .question");
         const answerForm = document.querySelectorAll(".answer");
 
-        if (questionForm.length  === 1) {
-            removeButton.style.display = 'none';
-        }
-
         if (questionForm.length > 1) {
             questionForm[questionForm.length - 1].remove();
             answerForm[questionForm.length - 1].remove();
+        }
+
+        if (questionForm.length  === 1) {
+            removeButton.style.display = 'none';
         }
     }
 }

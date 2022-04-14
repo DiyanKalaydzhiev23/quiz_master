@@ -9,7 +9,7 @@ function attachEvent() {
         addButton.addEventListener('click', addQuestion);
         removeButton.addEventListener('click', removeQuestion);
     }
-
+    console.log(questionForm.length)
     if (questionForm.length === 1) {
         removeButton.style.display = 'none';
     }
@@ -17,7 +17,6 @@ function attachEvent() {
     function addQuestion(e) {
         e.preventDefault()
 
-        const questionForm = document.querySelectorAll("form .question");
         const formsetElement = document.getElementById('id_form-TOTAL_FORMS');
         let newQuestionForm = questionForm[0].cloneNode(true);
         let newAnswerForm = answerForm[0].cloneNode(true);
@@ -42,7 +41,7 @@ function attachEvent() {
         container.insertBefore(newAnswerForm, container.children[-1]);
         container.insertBefore(buttons, container.children[-1]);
 
-        if (questionForm.length > 1) {
+        if (document.querySelectorAll("form .question").length > 1) {
             removeButton.style.display = 'inline-block';
         } else {
             removeButton.style.display = 'none';
@@ -56,13 +55,13 @@ function attachEvent() {
         const questionForm = document.querySelectorAll("form .question");
         const answerForm = document.querySelectorAll(".answer");
 
-        if (questionForm.length  === 1) {
-            removeButton.style.display = 'none';
-        }
-
-        if (questionForm.length > 1) {
+        if (document.querySelectorAll("form .question").length > 1) {
             questionForm[questionForm.length - 1].remove();
             answerForm[questionForm.length - 1].remove();
+        }
+
+        if (document.querySelectorAll("form .question").length  === 1) {
+            removeButton.style.display = 'none';
         }
     }
 }
