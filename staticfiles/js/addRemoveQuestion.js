@@ -10,6 +10,10 @@ function attachEvent() {
         removeButton.addEventListener('click', removeQuestion);
     }
 
+    if (questionForm.length === 1) {
+        removeButton.style.display = 'none';
+    }
+
     function addQuestion(e) {
         e.preventDefault()
 
