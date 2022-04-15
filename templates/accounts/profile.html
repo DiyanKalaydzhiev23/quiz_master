@@ -3,7 +3,7 @@
 {% block content %}
     <div id="profileDiv" class="text-center">
         <div id="imgDiv">
-            <img class="rounded-circle mb-3" src="/media/{{ profile.image }}" alt="Generic placeholder image">
+            <img class="rounded-circle mb-3" src="{{ profile.image.url }}" alt="Generic placeholder image">
             {% if request.user.id == profile.user_id %}
                 <a href="{% url 'edit profile' profile.user_id %}" class="btn btn-success">Edit</a>
                 <a href="{% url 'delete profile' profile.user_id %}" class="btn btn-danger">Delete</a>

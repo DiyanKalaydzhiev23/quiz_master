@@ -52,7 +52,7 @@ class Profile(models.Model):
 
     image = models.ImageField(
         upload_to='images',
-        default='images/default_image.png',
+        default='images/default_image_qvmqoi.png',
     )
 
     user = models.OneToOneField(
