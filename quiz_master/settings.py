@@ -60,19 +60,28 @@ TEMPLATES = [
 WSGI_APPLICATION = 'quiz_master.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd2hrhvgqgmh62m',
-        'USER': 'xnjnjwuhfjslcg',
-        'PASSWORD': 'c239e483857a87ddaa6cca3845e64626c3bd61f6f29e0685868ca70b4abecc0f',
-        'HOST': 'ec2-63-35-156-160.eu-west-1.compute.amazonaws.com',
-        'PORT': '5432',
+if "127.0.0.1" in ALLOWED_HOSTS:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'quiz_master_database',
+            'USER': 'postgres',
+            'PASSWORD': 'admin',
+            'HOST': '127.0.0.1',
+            'PORT': '5432',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'd2hrhvgqgmh62m',
+            'USER': 'xnjnjwuhfjslcg',
+            'PASSWORD': 'c239e483857a87ddaa6cca3845e64626c3bd61f6f29e0685868ca70b4abecc0f',
+            'HOST': 'ec2-63-35-156-160.eu-west-1.compute.amazonaws.com',
+            'PORT': '5432',
+        }
+    }
 
 
 # Password validation

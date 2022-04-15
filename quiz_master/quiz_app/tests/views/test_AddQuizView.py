@@ -1,6 +1,6 @@
 from django.urls import reverse
 from quiz_master.quiz_app.models import Quiz
-from quiz_master.quiz_app.tests.views.utils import SetUpMixin
+from quiz_master.common.utils import SetUpMixin
 
 
 class AddQuizTests(SetUpMixin):
