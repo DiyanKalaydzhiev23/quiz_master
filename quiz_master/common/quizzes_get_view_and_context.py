@@ -24,7 +24,7 @@ def get_context_data(request, **kwargs):
         context['user'] = UserModel.objects.get(id=pk)
         context['profile'] = Profile.objects.get(user_id=pk)
 
-    paginator = Paginator(quizzes, 20)
+    paginator = Paginator(quizzes, 12)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
