@@ -93,6 +93,12 @@ class EditQuizView(LoginRequiredMixin, GetQuizWithDataMixin, views.UpdateView):
     model = Quiz
     template_name = "pages/edit_quiz.html"
 
+    def get(self, *args, **kwargs):
+        if 1 != len(self.request.user.groups.filter(name='moderator')):
+            if self.get_object().author.id != self.request.user.id:
+                return redirect('quizzes')
+        return super().get(self, *args, **kwargs)
+
     def post(self, *args, **kwargs):
         quiz_form_data = {
             'category': self.request.POST.get('category'),

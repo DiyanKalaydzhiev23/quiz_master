@@ -73,21 +73,18 @@ footer {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    margin-left: 35vw;
+    margin-left: 10px;
 }
 
-.dropdown span {
+.menuElements {
     display: none;
     color: white;
-    text-align: center;
-    font-weight: bold;
-    font-size: 30px;
-    background-color: #2d333d;
+    margin: 10px;
 }
 
 
 @media (max-width: 1000px) {
-    .dropdown span {display: block;}
+    .menuElements {display: block;}
     #wrapper {display: none;}
 
     .dropdown { display: inline; }

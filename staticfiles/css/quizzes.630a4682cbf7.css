@@ -1,0 +1,53 @@
+.quiz {
+    flex-wrap: wrap; !important;
+}
+
+.pagination {
+    color: white;
+    margin-top: 10px;
+    margin-left: 40vw;
+    margin-bottom: 100px;
+}
+
+.pagination a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 20px;
+    background-color: #4b3ef7;
+}
+
+.current {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+#search_bar {
+    display: flex;
+}
+
+#search_bar input {
+    margin-top: 5px;
+    margin-left: 15vw;
+}
+
+@media (max-width: 1000px) {
+    #search_bar input {
+        margin-left: 8vw;
+    }
+
+    #header {
+        margin-top: 40px;
+    }
+
+    .pagination {
+        color: white;
+        margin-top: 10px;
+        margin-left: 10vw;
+    }
+
+    .pagination a {
+        line-height: 60px;
+    }
+}
