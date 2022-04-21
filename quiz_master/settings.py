@@ -5,9 +5,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-jeda=+fr+8v8kx!3xq_tl(sz^u35t48lgz-e2=m8_wt@urjlu8'
 
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["app-quiz-master.herokuapp.com"]
+ALLOWED_HOSTS = ["app-quiz-master.herokuapp.com", "127.0.0.1"]
 
 
 INSTALLED_APPS = [
@@ -17,6 +17,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
     'cloudinary',
 ]
 
