@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 import cloudinary
 
@@ -76,10 +77,10 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'd2hrhvgqgmh62m',
-            'USER': 'xnjnjwuhfjslcg',
-            'PASSWORD': 'c239e483857a87ddaa6cca3845e64626c3bd61f6f29e0685868ca70b4abecc0f',
-            'HOST': 'ec2-63-35-156-160.eu-west-1.compute.amazonaws.com',
+            'NAME': os.getenv('DBNAME'),
+            'USER': os.getenv('DBUSER'),
+            'PASSWORD': os.getenv('DBPASS'),
+            'HOST': os.getenv('DBHOST'),
             'PORT': '5432',
         }
     }
