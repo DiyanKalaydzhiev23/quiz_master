@@ -6,6 +6,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-jeda=+fr+8v8kx!3xq_tl(sz^u35t48lgz-e2=m8_wt@urjlu8'
 
+CSRF_TRUSTED_ORIGINS = ['https://'+ os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in os.environ else []
+
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
