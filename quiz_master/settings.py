@@ -77,10 +77,10 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'postgres',
+            'NAME': os.environ['DBNAME'],
             'USER': str(os.getenv('DBUSER')),
             'PASSWORD': str(os.getenv('DBPASS')),
-            'HOST': 'quiz-master-server',
+            'HOST': os.environ['DBHOST'] + ".postgres.database.azure.com",
             'PORT': '5432',
         }
     }
