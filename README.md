@@ -33,7 +33,18 @@
 
   <img width="1140" alt="Screenshot 2024-06-07 at 14 20 41" src="https://github.com/DiyanKalaydzhiev23/quiz_master/assets/81616126/1c771ff0-643d-4659-b849-fd0d98a3cfeb">
 
-- Statistics at the end of the test
+- Statistics at the end of the test:
 
 <img width="1162" alt="Screenshot 2024-06-07 at 14 22 02" src="https://github.com/DiyanKalaydzhiev23/quiz_master/assets/81616126/8edb14de-da4f-452e-ab3a-2f0b5ef07319">
+
+---
+
+- Profile with no tests:
+
+   <img width="1162" alt="Screenshot 2024-06-07 at 14 23 49" src="https://github.com/DiyanKalaydzhiev23/quiz_master/assets/81616126/b125cae0-d0c4-4167-b539-1940640cb968">
+
+---
+
+
+
 
