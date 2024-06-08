@@ -43,8 +43,20 @@
 
    <img width="1162" alt="Screenshot 2024-06-07 at 14 23 49" src="https://github.com/DiyanKalaydzhiev23/quiz_master/assets/81616126/b125cae0-d0c4-4167-b539-1940640cb968">
 
+- Profile with tests:
+  
+  <img width="1920" alt="Screenshot 2024-06-08 at 15 53 20" src="https://github.com/DiyanKalaydzhiev23/quiz_master/assets/81616126/90d6faac-ba79-4894-b3a8-3e23aef70c8d">
+
 ---
 
+- Add quiz:
 
+  <img width="1917" alt="Screenshot 2024-06-08 at 15 52 08" src="https://github.com/DiyanKalaydzhiev23/quiz_master/assets/81616126/6248d76c-74dd-4382-89ef-2b2b82d55b23">
+
+- Delete a quiz:
+
+  <img width="1920" alt="Screenshot 2024-06-08 at 15 58 54" src="https://github.com/DiyanKalaydzhiev23/quiz_master/assets/81616126/88df0e90-1ab4-41e1-86fd-eb723a3e97c4">
+
+---
 
 
